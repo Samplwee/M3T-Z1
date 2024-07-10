@@ -17,7 +17,7 @@ public class Shoot : MonoBehaviour
 
     public float shootRate = 0.5f;
     //Velocidad en la que sale una nueva bala
-
+    
 
     private float shootRateTime = 0;
 
