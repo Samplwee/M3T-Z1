@@ -24,9 +24,16 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+
+    if (Input.GetButton("Fire1"))
+    {
+            Debug.Log("Disparo");
+    }
+
+
         if (Input.GetButtonDown("Fire1"))//Verifica si se presiona el click del mouse si es asi entonces
         {
-            if (Time.time > shootRateTime) //el tiempo pasado desde el click es mayor a la cadencia de tiro entonces
+            if (Time.time >= shootRateTime) //el tiempo pasado desde el click es mayor a la cadencia de tiro entonces
             {
                 GameObject newBullet;// crea un objeto osea una nueva bala
                 newBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);// esa nueva bala con el spawnpoint creado y rotacion que tenga este
@@ -35,6 +42,7 @@ public class Shoot : MonoBehaviour
                 rb.useGravity = true;
                 shootRateTime = shootRate + Time.time;//shootrate time pasa a valer la cadencia de tiro mas el tiempo en el que se disparo
                 //este tiempo tiene que ser menor desde el ultimo click para volver a disparar
+                Destroy(newBullet, 3);
 
             }
 
