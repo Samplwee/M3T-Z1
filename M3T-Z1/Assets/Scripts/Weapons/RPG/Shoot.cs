@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
     //Modelo en modo de GameObject de la bala
 
-    public float shootForce = 1500f;
+    public float shootForce = 2000f;
     //Velocidad de la bala
 
     public float shootRate = 0.5f;
@@ -33,8 +33,9 @@ public class Shoot : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))//Verifica si se presiona el click del mouse si es asi entonces
         {
-            if (Time.time >= shootRateTime) //el tiempo pasado desde el click es mayor a la cadencia de tiro entonces
+            if (Time.time >= shootRateTime && GameManager.Instance.gunAmmo > 0) //el tiempo pasado desde el click es mayor a la cadencia de tiro y ademas tenemos municion entonces
             {
+                GameManager.Instance.gunAmmo--; //Nos quita una municion si disparamos
                 GameObject newBullet;// crea un objeto osea una nueva bala
                 newBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);// esa nueva bala con el spawnpoint creado y rotacion que tenga este
                 newBullet.GetComponent<Rigidbody>().AddForce(-spawnPoint.up * shootForce);// La nueva bala con un componente de fuerza se desplaza hacia adelante con la velocidad de shootforce
