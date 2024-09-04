@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - GunAmmo
+  - FxTemporaire
+  - Deathfloor
   layers:
   - Default
   - TransparentFX
