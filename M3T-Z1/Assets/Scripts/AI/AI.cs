@@ -8,7 +8,7 @@ public class AI : MonoBehaviour
  
     public NavMeshAgent navMeshAgent;
     //Llama a la malla de navegacion para saber cual es
- 
+
     public Transform[] destinations;
     //puntos a cuales ir
 
@@ -33,6 +33,11 @@ public class AI : MonoBehaviour
         navMeshAgent.destination = destinations[i].transform.position;
         player = FindObjectOfType<Playermovement>().gameObject;
         //El jugador va a ser todo lo que tenga el script de PlayerMovement
+
+        if (destinations == null || destinations.Length == 0)
+        {
+            transform.gameObject.GetComponent<AI>().enabled = false;
+        }
     }
 
 

@@ -21,6 +21,14 @@ public class Shoot : MonoBehaviour
 
     private float shootRateTime = 0;
 
+    private AudioSource audioSource;
+
+    public AudioClip shotSound;
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
 
     void Update()
     {
@@ -35,6 +43,7 @@ public class Shoot : MonoBehaviour
         {
             if (Time.time >= shootRateTime && GameManager.Instance.gunAmmo > 0) //el tiempo pasado desde el click es mayor a la cadencia de tiro y ademas tenemos municion entonces
             {
+                audioSource.PlayOneShot(shotSound);//Reproduce una vez el sonido del arma
                 GameManager.Instance.gunAmmo--; //Nos quita una municion si disparamos
                 GameObject newBullet;// crea un objeto osea una nueva bala
                 newBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);// esa nueva bala con el spawnpoint creado y rotacion que tenga este
@@ -43,7 +52,7 @@ public class Shoot : MonoBehaviour
                 rb.useGravity = true;
                 shootRateTime = shootRate + Time.time;//shootrate time pasa a valer la cadencia de tiro mas el tiempo en el que se disparo
                 //este tiempo tiene que ser menor desde el ultimo click para volver a disparar
-                Destroy(newBullet, 3);
+                Destroy(newBullet, 1);
 
             }
 

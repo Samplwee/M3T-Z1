@@ -8,11 +8,13 @@ TagManager:
   - GunAmmo
   - FxTemporaire
   - Deathfloor
+  - EnemyBullet
+  - Train
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Weapon
   - Water
   - UI
   - Floor

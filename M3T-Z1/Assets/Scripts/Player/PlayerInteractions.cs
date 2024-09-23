@@ -17,16 +17,30 @@ public class PlayerInteractions : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Deathfloor"))
+        {
+            Debug.Log("Colision");
+            GameManager.Instance.LoseHealth(100);
+            GetComponent<CharacterController>().enabled = false;
+            gameObject.transform.position = starposition.position;
+            GetComponent<CharacterController>().enabled = true;
+        }
 
-            //Daño, Reset 
-            Debug.Log("Deathfloor");
+        if (other.gameObject.CompareTag("Train"))
+        {
+            Debug.Log("Colision");
+            GameManager.Instance.LoseHealth(100);
 
-        GameManager.Instance.LoseHealth(100);
-        GetComponent<CharacterController>().enabled=false;
-        gameObject.transform.position = starposition.position;
-        GetComponent<CharacterController>().enabled = true;
-    } 
-
-
+            GetComponent<CharacterController>().enabled = false;
+            gameObject.transform.position = starposition.position;
+            GetComponent<CharacterController>().enabled = true;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            GameManager.Instance.LoseHealth(5);
+        }
+    }
 
 }

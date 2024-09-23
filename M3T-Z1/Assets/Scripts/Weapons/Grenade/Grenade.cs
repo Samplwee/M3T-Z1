@@ -19,12 +19,17 @@ public class Grenade : MonoBehaviour
 
     public GameObject explosionEffect;
 
+    private AudioSource audioSource;
+
+    public AudioClip explosionSound;
+ 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         countdown = delay;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         countdown-= Time.deltaTime;
@@ -52,7 +57,13 @@ public class Grenade : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        audioSource.PlayOneShot(explosionSound);
+
+        gameObject.GetComponent<SphereCollider>().enabled = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+
+        Destroy(gameObject, delay * 2);
 
     }
 }
